@@ -130,7 +130,7 @@ FUNCTION {bbl.et.al}
 }
 
 FUNCTION {citation.et.al}
-{ bbl.et.al }
+{ "" }  % { bbl.et.al } from Ligandlly https://github.com/TouchFishPioneer/SEU-master-thesis/pull/22/files
 
 FUNCTION {bbl.colon} { ": " }
 

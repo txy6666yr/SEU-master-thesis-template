@@ -137,6 +137,7 @@
 \RequirePackage{algorithmicx}
 \RequirePackage{algpseudocode}
 \numberwithin{algorithm}{chapter}
+\renewcommand{\thealgorithm}{\thechapter{}-\arabic{algorithm}} % 修改5 -- 统一图、表、算法序号标记 from XHomL XingHom Liu 详情：https://github.com/Reanon/SEUThesisLatexTemplate/pull/9
 \renewcommand{\algorithmicrequire}{\textbf{输入:}}
 \renewcommand{\algorithmicensure}{\textbf{输出:}}
 % \renewcommand{\algorithmicrequire}{\textbf{输入:}}    % 替换 \REQUIRE
@@ -156,6 +157,15 @@
 % \renewcommand{\algorithmicuntil}{\textbf{直到}}      % 替换 \UNTIL
 \floatname{algorithm}{算法}
 \renewcommand{\listalgorithmname}{算法目录}
+% 修改6 -- 优化图、表、算法目录 from XHomL
+\let\oldlistofalgorithms\listofalgorithms
+\let\oldnumberline\numberline% Store \numberline
+\newcommand{\algnumberline}[1]{算法~#1}
+\renewcommand{\listofalgorithms}{%
+  \let\numberline\algnumberline% Update \numberline
+  \oldlistofalgorithms
+  \let\numberline\oldnumberline% Restore \numberline
+}
 
 %% ----------------------------------------------------------------------------
 %%                        Reference and Citation
@@ -195,7 +205,8 @@
 %%                          Table & Figure Settings
 %% ----------------------------------------------------------------------------
 
-\renewcommand{\thetable}{\thechapter{}.\arabic{table}}
+% \renewcommand{\thetable}{\thechapter{}.\arabic{table}}
+\renewcommand{\thetable}{\thechapter{}-\arabic{table}}   % 修改5 -- 统一图、表、算法序号标记 from XHomL
 \renewcommand{\thefigure}{\thechapter{}-\arabic{figure}}
 \captionsetup[table]{labelsep=quad}
 \captionsetup[figure]{labelsep=quad}
@@ -524,7 +535,7 @@
         \begin{center}
             \linespread{1.25}
             \erhao\heiti\@title\\
-            \erhao\heiti\@subtitle\\    % 修改3 -- Reanon 为了避免空副标题
+            % \erhao\heiti\@subtitle\\    % 修改3 -- Reanon 为了避免空副标题
         \end{center}
     \end{minipage}
 
@@ -795,10 +806,11 @@
     \begin{center}
         \xiaochuhao
         \includegraphics[height=0.63in]{figures/defined/seu-text-logo.png}\\
+        \centering
         \ifengineer
-            \includegraphics[scale=0.35]{figures/defined/master.png}
+            \includegraphics[scale=0.32]{figures/defined/master.png}
         \else
-            \includegraphics[scale=0.35]{figures/defined/master.png}
+            \includegraphics[scale=0.32]{figures/defined/master.png}
         \fi
 
         %% Thesis title
@@ -877,7 +889,13 @@
             }\\
             {\universitynameeng}\\
             % 修改4 -- Reanon, 专业硕士为 Professional，学术硕士为 Academic
-            {For the Professional Degree of \@degreetypeen}\\
+            %{  For the Professional Degree of \@degreetypeen}\\
+            % from https://github.com/TouchFishPioneer/SEU-master-thesis/pull/12/files
+            \ifengineer
+                {For the Professional Degree of \@degreetypeen}\\
+            \else
+                {For the Academic Degree of \@degreetypeen}\\
+            \fi
 
             %% Author
             {\vspace{0.5in}}
@@ -967,6 +985,17 @@
 %% ----------------------------------------------------------------------------
 %%                            Summary list
 %% ----------------------------------------------------------------------------
+
+% 修改6 -- 优化图、表、算法目录 from XHomL
+\renewcommand{\cftfigpresnum}{图\ }
+\renewcommand{\cfttabpresnum}{表\ }
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+2.5em}
+\newlength{\mylent}
+\settowidth{\mylent}{\cfttabpresnum}
+\setlength{\cfttabnumwidth}{\dimexpr\mylent+2.5em}
+
 
 \newcommand\listofothers {
 
