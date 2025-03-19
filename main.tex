@@ -5,8 +5,14 @@
 \usepackage{lipsum}
 \usepackage{pifont}  % 引入 pifont 宏包
 \usepackage{enumitem}
+% Mac系统取消以下两行代码的注释，
+% \usepackage{fontspec} % 加载 fontspec 宏包
+% \usepackage{xeCJK}    % 加载 xeCJK 宏包以支持中文
+
+% Mac系统如需更改宋体与Windows保持一直，前往https://github.com/Reanon/SEUThesisLatexTemplate/tree/master/font下载Simsun.ttf后打开安装到系统中即可
+
 \renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}}
-\setCJKmainfont{simsun.ttc}[AutoFakeBold]
+\setCJKmainfont{simsun.ttc}[AutoFakeBold]  %使用Overleaf需要注释掉这一行
 \begin{document}
 
 %% ----------------------------------------------------------------------------

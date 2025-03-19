@@ -650,14 +650,35 @@ FUNCTION {add.link}
   if$
 }
 
+% garbagecoder modify 2025.3.19
+
+% FUNCTION {format.title}
+% { title empty$
+%     { "" }
+%     { title
+%       sentence.case.title
+%         'change.sentence.case
+%         'skip$
+%       if$
+%       entry.numbered number empty$ not and
+%         { bbl.colon * number * }
+%         'skip$
+%       if$
+%       link.title
+%         'add.link
+%         'skip$
+%       if$
+%     }
+%   if$
+% }
+
+% garbagecoder: Use the following code to keep the case of literature titles in the references section
+% 使用以下代码，在参考文献中，文献标题保留大小写
+
 FUNCTION {format.title}
 { title empty$
     { "" }
-    { title
-      sentence.case.title
-        'change.sentence.case
-        'skip$
-      if$
+    { title  % 直接使用 title，不做任何大小写转换
       entry.numbered number empty$ not and
         { bbl.colon * number * }
         'skip$
