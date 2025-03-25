@@ -53,8 +53,8 @@
 \renewcommand{\cftchapleader}{\bfseries\cftdotfill{\cftdotsep}}
 % \newcommand{\cmufont}{\fontspec{CMU Serif}}
 % \newcommand{\codefont}{\fontspec{Consolas}}                %% Microsoft Windows
-% \newcommand{\codefont}{\fontspec{Ubuntu Mono}}              %% Ubuntu GNU/Linux
-\newcommand{\codefont}{\fontspec{Consolas}} 
+\newcommand{\codefont}{\fontspec{Ubuntu Mono}}              %% Ubuntu GNU/Linux
+% \newcommand{\codefont}{\fontspec{Consolas}} 
 
 %% Font size
 \newcommand{\chuhao}{\fontsize{42bp}{46bp}\selectfont}
